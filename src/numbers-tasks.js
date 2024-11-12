@@ -35,8 +35,7 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
 }
 
 function getLastDigit(value) {
-  const string = value.toString().trim();
-  return parseFloat(string[string.length - 1]);
+  return value % 10;
 }
 
 function parseNumberFromString(string) {
@@ -91,7 +90,9 @@ function getCube(num) {
  *   3  => 2
  *   10 => 55
  */
-function getFibonacciNumber(index) {
+function getFibonacciNumber(/* index */) {
+  throw new Error('Not implemented');
+  /*
   let counter = index;
   let previousNumber = 1;
   let currentNumber = 1;
@@ -113,6 +114,7 @@ function getFibonacciNumber(index) {
     counter -= 1;
   }
   return currentNumber;
+   */
 }
 
 function getSumToN(n) {
@@ -130,7 +132,9 @@ function getSumOfDigits(num) {
   return sum;
 }
 
-function isPowerOfTwo(num) {
+function isPowerOfTwo(/* num */) {
+  throw new Error('Not implemented');
+  /*
   let i = 1;
   while (i < 20) {
     if (num % 2 ** i === 0) {
@@ -144,6 +148,7 @@ function isPowerOfTwo(num) {
     }
   }
   return false;
+   */
 }
 
 function getSine(num) {
@@ -209,16 +214,21 @@ function toPrecision(/* number, precision */) {
  * new Number(5) => 5
  * Number(-5)    => -5
  */
-function getNumberValue(/* number */) {
-  throw new Error('Not implemented');
+function getNumberValue(number) {
+  return number.valueOf();
 }
 
 function isNumber(number) {
-  return number === parseFloat(number);
+  if (Number(number) === number) {
+    if (Number.isFinite(number)) {
+      return true;
+    }
+  }
+  return false;
 }
 
 function isInteger(number) {
-  return number === parseInt(number, 10);
+  return Number.isInteger(number);
 }
 
 /**
