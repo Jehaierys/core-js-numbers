@@ -7,85 +7,24 @@
  *                                                                                           *
  ******************************************************************************************* */
 
-/**
- * Returns an area of a rectangle given by width and height.
- *
- * @param {number} width
- * @param {number} height
- * @return {number}
- *
- * @example:
- *   5, 10 => 50
- *   5, 5  => 25
- */
-function getRectangleArea(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleArea(width, height) {
+  return width * height;
 }
 
-/**
- * Returns a circumference of circle given by radius.
- *
- * @param {number} radius
- * @return {number}
- *
- * @example:
- *   5    => 31.41592653589793
- *   3.14 => 19.729201864543903
- *   0    => 0
- */
-function getCircleCircumference(/* radius */) {
-  throw new Error('Not implemented');
+function getCircleCircumference(raduis) {
+  return 2 * Math.PI * raduis;
 }
 
-/**
- * Returns an average of two given numbers.
- *
- * @param {number} value1
- * @param {number} value2
- * @return {number}
- *
- * @example:
- *   5, 5  => 5
- *  10, 0  => 5
- *  -3, 3  => 0
- */
-function getAverage(/* value1, value2 */) {
-  throw new Error('Not implemented');
+function getAverage(value1, value2) {
+  return value1 / 2 + value2 / 2;
 }
 
-/**
- * Returns a distance between two points by cartesian coordinates.
- *
- * @param {number} x1
- * @param {number} y1
- * @param {number} x2
- * @param {number} y2
- *
- * @return {number}
- *
- * @example:
- *   (0,0) (0,1)    => 1
- *   (0,0) (1,0)    => 1
- *   (-5,0) (10,-10) => 18.027756377319946
- */
-function getDistanceBetweenPoints(/* x1, y1, x2, y2 */) {
-  throw new Error('Not implemented');
+function getDistanceBetweenPoints(x1, y1, x2, y2) {
+  return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
 }
 
-/**
- * Returns a root of linear equation a*x + b = 0 given by coefficients a and b.
- *
- * @param {number} a
- * @param {number} b
- * @return {number}
- *
- * @example:
- *   5*x - 10 = 0    => 2
- *   x + 8 = 0       => -8
- *   5*x = 0         => 0
- */
-function getLinearEquationRoot(/* a, b */) {
-  throw new Error('Not implemented');
+function getLinearEquationRoot(a, b) {
+  return (-1 * b) / a;
 }
 
 /**
@@ -109,36 +48,13 @@ function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
   throw new Error('Not implemented');
 }
 
-/**
- * Returns a last digit of a integer number.
- * The input parameter will always be greater than or equal to zero and will be in decimal notation.
- *
- * @param {number} value
- * @return {number}
- *
- * @example:
- *   100     => 0
- *    37     => 7
- *     5     => 5
- *     0     => 0
- */
-function getLastDigit(/* value */) {
-  throw new Error('Not implemented');
+function getLastDigit(value) {
+  const string = value.toString().trim();
+  return parseFloat(string[string.length - 1]);
 }
 
-/**
- * Returns a number by given string representation.
- *
- * @param {string} value
- * @return {number}
- *
- * @example:
- *    '100'     => 100
- *     '37'     => 37
- * '-525.5'     => -525.5
- */
-function parseNumberFromString(/* value */) {
-  throw new Error('Not implemented');
+function parseNumberFromString(string) {
+  return parseFloat(string);
 }
 
 /**
@@ -158,80 +74,35 @@ function getParallelepipedDiagonal(/* a, b, c */) {
   throw new Error('Not implemented');
 }
 
-/**
- * Returns the number rounded to specified power of 10.
- *
- * @param {number} num
- * @param {number} pow
- * @return {number}
- *
- * @example:
- *   1234, 0  => 1234
- *   1234, 1  => 1230
- *   1234, 2  => 1200
- *   1234, 3  => 1000
- *   1678, 0  => 1678
- *   1678, 1  => 1680
- *   1678, 2  => 1700
- *   1678, 3  => 2000
- */
-function roundToPowerOfTen(/* num, pow */) {
-  throw new Error('Not implemented');
+function roundToPowerOfTen(num, pow) {
+  let a = parseFloat(num / 10 ** pow, 10);
+  a = Math.round(a);
+  return a * 10 ** pow;
 }
 
-/**
- * Returns true is the number is prime; otherwise false.
- * See: https://en.wikipedia.org/wiki/Primality_test
- *
- * @param {number} n
- * @return {bool}
- *
- * @example:
- *   4 => false
- *   5 => true
- *   6 => false
- *   7 => true
- *   11 => true
- *   12 => false
- *   16 => false
- *   17 => true
- */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(n) {
+  const primes = [2, 3, 5, 7, 11, 13, 17, 19];
+  for (let i = 0; i < primes.length - 1; ) {
+    if (primes[i] === n) {
+      return true;
+    }
+    if (n % primes[i] === 0) {
+      return false;
+    }
+    i += 1;
+  }
+  return true;
 }
 
-/**
- * Tries to convert value to number and returns it if conversion was successful;
- * otherwise returns default value passed as a second argument.
- *
- * @param {any} value
- * @param {any} def
- * @return {number}
- *
- * @example
- *   toNumber(null, 0) => 0
- *   toNumber('test', 0) => 0
- *   toNumber('1', 0) => 1
- *   toNumber(42, 0) => 42
- *   toNumber(new Number(42), 0) => 42
- */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  if (!Number.isNaN(parseFloat(value))) {
+    return value;
+  }
+  return def;
 }
 
-/**
- * Returns the cube of the given number.
- *
- * @param {number} num
- * @return {number}
- *
- * @example:
- *   3  => 27
- *   -2 => -8
- *   0  => 0
- */
-function getCube(/* num */) {
-  throw new Error('Not implemented');
+function getCube(num) {
+  return num ** 3;
 }
 
 /**
@@ -249,36 +120,44 @@ function getCube(/* num */) {
  */
 function getFibonacciNumber(/* index */) {
   throw new Error('Not implemented');
+  /*
+  let previousNumber = 1;
+  let currentNumber = 1;
+  let keeper = 1;
+
+  if (index === 1) {
+    return 0;
+  }
+  if (index === 2 || index === 3) {
+    return 1;
+  }
+
+  index -= 3;
+
+  while (index !== 0) {
+    keeper = currentNumber;
+    currentNumber += previousNumber;
+    previousNumber = keeper;
+    --index;
+  }
+  return currentNumber;
+
+   */
 }
 
-/**
- * Returns the sum of all numbers from 1 to n.
- *
- * @param {number} n
- * @return {number}
- *
- * @example:
- *   5  => 15 // (1+2+3+4+5)
- *   10 => 55 // (1+2+3+...+10)
- *   1  => 1
- */
-function getSumToN(/* n */) {
-  throw new Error('Not implemented');
+function getSumToN(n) {
+  return n ** 2 / 2 + n * 0.5;
 }
 
-/**
- * Returns the sum of the digits of a given number.
- *
- * @param {number} num
- * @return {number}
- *
- * @example:
- *   123 => 6  // (1+2+3)
- *   202 => 4  // (2+0+2)
- *   5   => 5  // 5
- */
-function getSumOfDigits(/* num */) {
-  throw new Error('Not implemented');
+function getSumOfDigits(num) {
+  const string = num.toString().trim();
+  let i = 0;
+  let sum = 0;
+  while (i < string.length) {
+    sum += parseInt(string.charAt(i), 10);
+    i += 1;
+  }
+  return sum;
 }
 
 /**
@@ -292,22 +171,24 @@ function getSumOfDigits(/* num */) {
  *   16  => true
  *   15  => false
  */
-function isPowerOfTwo(/* num */) {
-  throw new Error('Not implemented');
+function isPowerOfTwo(num) {
+  let i = 1;
+  while (i < 20) {
+    if (num % 2 ** i === 0) {
+      if (num === 0) {
+        return true;
+      }
+      if (num !== Math.floor(num)) {
+        return false;
+      }
+      i += 1;
+    }
+  }
+  return false;
 }
 
-/**
- * Returns the sine of a number.
- *
- * @param {number} num
- * @return {number}
- *
- * @example:
- *   0 => 0
- *   Math.PI / 2 => 1
- */
-function getSine(/* num */) {
-  throw new Error('Not implemented');
+function getSine(num) {
+  return Math.sin(num);
 }
 
 /**
@@ -384,38 +265,12 @@ function getNumberValue(/* number */) {
   throw new Error('Not implemented');
 }
 
-/**
- * Returns a boolean value indicating whether the parameter is a number or not.
- *
- * @param {number} number
- * @return {boolean}
- *
- * @example:
- * Infinity => false
- * NaN      => false
- * 0        => true
- * 'a' / 1  => false
- * 'a'      => false
- * 5        => true
- * '5'      => false
- */
-function isNumber(/* number */) {
-  throw new Error('Not implemented');
+function isNumber(number) {
+  return number === parseFloat(number);
 }
 
-/**
- * Returns a boolean value indicating whether a number is an integer or not.
- *
- * @param {number} number
- * @return {boolean}
- *
- * @example:
- * 5    => true
- * 5.1  => false
- * '5'  => false
- */
-function isInteger(/* number */) {
-  throw new Error('Not implemented');
+function isInteger(number) {
+  return number === parseInt(number, 10);
 }
 
 /**
