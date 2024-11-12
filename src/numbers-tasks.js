@@ -27,25 +27,11 @@ function getLinearEquationRoot(a, b) {
   return (-1 * b) / a;
 }
 
-/**
- * Returns an angle (in radians) between two vectors given by xi and yi,
- * coordinates in Cartesian plane.
- * See details https://en.wikipedia.org/wiki/Euclidean_vector#Representations
- *
- * @param {number} x1
- * @param {number} y1
- * @param {number} x2
- * @param {number} y2
- * @return {number}
- *
- * @example:
- *   (1,0) (0,1)     => π/2
- *   (0,1) (0,-1)    => π
- *   (0,-1) (1,0)    => π/2
- *   (0,1) (0,1)     => 0
- */
-function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
-  throw new Error('Not implemented');
+function getAngleBetweenVectors(x1, y1, x2, y2) {
+  return Math.acos(
+    ((x1 * x2 + y1 * y2) / Math.sqrt(x1 ** 2 + y1 ** 2)) *
+      Math.sqrt(x2 ** 2 + y2 ** 2)
+  );
 }
 
 function getLastDigit(value) {
@@ -57,21 +43,8 @@ function parseNumberFromString(string) {
   return parseFloat(string);
 }
 
-/**
- * Returns a diagonal length of the rectangular parallelepiped given by its sides a,b,c.
- *
- * @param {number} a
- * @param {number} b
- * @param {number} c
- * @return {number}
- *
- * @example:
- *   1,1,1   => 1.7320508075688772
- *   3,3,3   => 5.196152422706632
- *   1,2,3   => 3.741657386773941
- */
-function getParallelepipedDiagonal(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getParallelepipedDiagonal(a, b, c) {
+  return Math.sqrt(a ** 2 + b ** 2 + c ** 2);
 }
 
 function roundToPowerOfTen(num, pow) {
@@ -118,31 +91,28 @@ function getCube(num) {
  *   3  => 2
  *   10 => 55
  */
-function getFibonacciNumber(/* index */) {
-  throw new Error('Not implemented');
-  /*
+function getFibonacciNumber(index) {
+  let counter = index;
   let previousNumber = 1;
   let currentNumber = 1;
   let keeper = 1;
 
-  if (index === 1) {
+  if (counter === 1) {
     return 0;
   }
-  if (index === 2 || index === 3) {
+  if (counter === 2 || counter === 3) {
     return 1;
   }
 
-  index -= 3;
+  counter -= 3;
 
-  while (index !== 0) {
+  while (counter !== 0) {
     keeper = currentNumber;
     currentNumber += previousNumber;
     previousNumber = keeper;
-    --index;
+    counter -= 1;
   }
   return currentNumber;
-
-   */
 }
 
 function getSumToN(n) {
@@ -160,17 +130,6 @@ function getSumOfDigits(num) {
   return sum;
 }
 
-/**
- * Returns true if the given number is a power of two, false otherwise.
- *
- * @param {number} num
- * @return {boolean}
- *
- * @example:
- *   4   => true
- *   16  => true
- *   15  => false
- */
 function isPowerOfTwo(num) {
   let i = 1;
   while (i < 20) {
@@ -191,19 +150,8 @@ function getSine(num) {
   return Math.sin(num);
 }
 
-/**
- * Returns a string representation of a number in a specified base (radix).
- *
- * @param {number} number
- * @param {number} base
- * @return {string}
- *
- * @example:
- * 255, 16 => 'ff'
- * 2, 2    => '10'
- */
-function numberToStringInBase(/* number, base */) {
-  throw new Error('Not implemented');
+function numberToStringInBase(number, base) {
+  return number.toString(base);
 }
 
 /**
@@ -231,8 +179,8 @@ function toExponential(/* number, fractionDigits */) {
  * 12345, 2    => '12345.00'
  * 12.345, 1   => '12.3'
  */
-function toFixed(/* number, fractionDigits */) {
-  throw new Error('Not implemented');
+function toFixed(number, fractionDigits) {
+  return number.toFixed(fractionDigits).toString();
 }
 
 /**
