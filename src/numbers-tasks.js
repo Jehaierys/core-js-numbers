@@ -77,44 +77,21 @@ function getCube(num) {
   return num ** 3;
 }
 
-/**
- * Returns the Fibonacci number located at the index position.
- *
- * @param {number} index
- * @return {number}
- *
- * @example:
- *   0  => 0
- *   1  => 1
- *   2  => 1
- *   3  => 2
- *   10 => 55
- */
-function getFibonacciNumber(/* index */) {
-  throw new Error('Not implemented');
-  /*
-  let counter = index;
-  let previousNumber = 1;
-  let currentNumber = 1;
-  let keeper = 1;
+function getFibonacciNumber(index) {
+  if (index === 0) return 0;
+  if (index === 1) return 1;
 
-  if (counter === 1) {
-    return 0;
-  }
-  if (counter === 2 || counter === 3) {
-    return 1;
+  let prev = 0;
+  let curr = 1;
+
+  for (let i = 2; i <= index; ) {
+    const next = prev + curr;
+    prev = curr;
+    curr = next;
+    i += 1;
   }
 
-  counter -= 3;
-
-  while (counter !== 0) {
-    keeper = currentNumber;
-    currentNumber += previousNumber;
-    previousNumber = keeper;
-    counter -= 1;
-  }
-  return currentNumber;
-   */
+  return curr;
 }
 
 function getSumToN(n) {
@@ -132,23 +109,10 @@ function getSumOfDigits(num) {
   return sum;
 }
 
-function isPowerOfTwo(/* num */) {
-  throw new Error('Not implemented');
-  /*
-  let i = 1;
-  while (i < 20) {
-    if (num % 2 ** i === 0) {
-      if (num === 0) {
-        return true;
-      }
-      if (num !== Math.floor(num)) {
-        return false;
-      }
-      i += 1;
-    }
-  }
-  return false;
-   */
+function isPowerOfTwo(num) {
+  if (num === 2) return true;
+  if (!Number.isInteger(num)) return false;
+  return isPowerOfTwo(num / 2);
 }
 
 function getSine(num) {
@@ -159,61 +123,18 @@ function numberToStringInBase(number, base) {
   return number.toString(base);
 }
 
-/**
- * Returns a string representation of a number in exponential notation.
- *
- * @param {number} number
- * @param {number} fractionDigits
- * @return {string}
- *
- * @example:
- * 12345, 2    => '1.23e+4'
- */
-function toExponential(/* number, fractionDigits */) {
-  throw new Error('Not implemented');
+function toExponential(number, fractionDigits) {
+  return number.toExponential(fractionDigits);
 }
 
-/**
- * Returns a string representation of a number in fixed-point notation.
- *
- * @param {number} number
- * @param {number} fractionDigits
- * @return {string}
- *
- * @example:
- * 12345, 2    => '12345.00'
- * 12.345, 1   => '12.3'
- */
 function toFixed(number, fractionDigits) {
   return number.toFixed(fractionDigits).toString();
 }
 
-/**
- * Returns a string representation of a number in normal (fixed-point or exponential)
- * notation rounded to precision significant digits.
- *
- * @param {number} number
- * @param {number} precision
- * @return {string}
- *
- * @example:
- * 12345, 7    => '12345.00'
- * 12.345, 4   => '12.35'
- */
-function toPrecision(/* number, precision */) {
-  throw new Error('Not implemented');
+function toPrecision(number, precision) {
+  return number.toPrecision(precision);
 }
 
-/**
- * Returns the primitive value of a Number object.
- *
- * @param {Number} number
- * @return {number}
- *
- * @example:
- * new Number(5) => 5
- * Number(-5)    => -5
- */
 function getNumberValue(number) {
   return number.valueOf();
 }
@@ -231,188 +152,55 @@ function isInteger(number) {
   return Number.isInteger(number);
 }
 
-/**
- * Returns a floating point number or, if the number cannot be parsed from the argument, returns NaN.
- *
- * @param {string} str
- * @return {number | NaN}
- *
- * @example:
- * '4.567abcdefgh' => 4.567
- * 'abcdefgh'      => NaN
- */
-function getFloatOnString(/* str */) {
-  throw new Error('Not implemented');
+function getFloatOnString(str) {
+  return Number.parseFloat(str);
 }
 
-/**
- * Returns an integer of the specified base or, if the number cannot be parsed
- * from the argument, returns NaN.
- *
- * @param {string} str
- * @param {number} base
- * @return {number | NaN}
- *
- * @example:
- * '4.567abcdefgh', 10  => 4
- * 'abcdefgh', 10       => NaN
- * '1.234', 2           => 1
- * '10', 8              => 8
- */
-function getIntegerOnString(/* str, base */) {
-  throw new Error('Not implemented');
+function getIntegerOnString(str, base) {
+  return Number.parseInt(str, base);
 }
 
-/**
- * Returns whether a number is a safe integer.
- *
- * @param {number} number
- * @return {boolean}
- *
- * @example:
- * 10       => true
- * 3.5      => false
- * 2 ** 53  => false
- */
-function isSafeInteger(/* number */) {
-  throw new Error('Not implemented');
+function isSafeInteger(number) {
+  return Number.isSafeInteger(number);
 }
 
-/**
- * Returns the smallest integer less than or equal to a given number.
- *
- * @param {number} number
- * @return {number}
- *
- * @example:
- * 5.9  => 5
- * -5.1 => -6
- */
-function roundToSmallestInteger(/* number */) {
-  throw new Error('Not implemented');
+function roundToSmallestInteger(number) {
+  return Math.floor(number);
 }
 
-/**
- * Returns the largest integer greater than or equal to a given number.
- *
- * @param {number} number
- * @return {number}
- *
- * @example:
- * 5.1  => 6
- * -5.9 => -5
- */
-function roundToLargestInteger(/* number */) {
-  throw new Error('Not implemented');
+function roundToLargestInteger(number) {
+  return Math.ceil(number);
 }
 
-/**
- * Returns the value of a number rounded to the nearest integer.
- *
- * @param {number} number
- * @return {number}
- *
- * @example:
- * 5.5  => 6
- * 5.4  => 5
- * -5.5 => -5
- */
-function roundToNearestInteger(/* number */) {
-  throw new Error('Not implemented');
+function roundToNearestInteger(number) {
+  return Math.round(number);
 }
 
-/**
- * Returns the integer part of a number by removing any fractional digits.
- *
- * @param {number} number
- * @return {number}
- *
- * @example:
- * 5.5  => 5
- * 5.4  => 5
- * -5.5 => -5
- */
-function getIntegerPartNumber(/* number */) {
-  throw new Error('Not implemented');
+function getIntegerPartNumber(number) {
+  return Math.trunc(number);
 }
 
-/**
- * Returns the sum of numbers.
- *
- * @param {number} x1
- * @param {number} x2
- * @param {number} x3
- * @returns {number}
- *
- * @example:
- * 1, 2, 3       => 6
- * 0.1, 0.2, 0.3 => 0.6
- */
-function getSumOfNumbers(/* x1, x2, x3 */) {
-  throw new Error('Not implemented');
+function getSumOfNumbers(x1, x2, x3) {
+  return (x1 + x2 + x3).toFixed(3);
 }
 
-/**
- * Returns the largest number.
- *
- * @param {number} firstNumber
- * @param {number} secondNumber
- * @return {number}
- *
- * @example:
- * 1, 2   => 2
- * -5, -6 => -5
- * 0, 5   => 5
- */
-function getMaxNumber(/* firstNumber, secondNumber */) {
-  throw new Error('Not implemented');
+function getMaxNumber(firstNumber, secondNumber) {
+  return Math.max(firstNumber, secondNumber);
 }
 
-/**
- * Returns a random integer in the range from min to max.
- *
- * @param {number} min
- * @param {number} max
- * @return {number}
- *
- * @example:
- * 1, 2  => 1 | 2
- * -5, 0 => -5 | -4 | -3 | -2 | -1 | 0
- * -1, 1 => -1 | 0 | 1
- */
-function getRandomInteger(/* min, max */) {
-  throw new Error('Not implemented');
+function getRandomInteger(min, max) {
+  return Math.trunc(Math.random() * (max - min) + min + 1);
 }
 
-/**
- * Returns the length of the hypotenuse of a right triangle.
- *
- * @param {number} a
- * @param {number} b
- * @return {number}
- *
- * @example:
- * 3, 4 => 5
- */
-function getHypotenuse(/* a, b */) {
-  throw new Error('Not implemented');
+function getHypotenuse(a, b) {
+  return Math.hypot(a, b);
 }
 
-/**
- * Returns count of odd numbers from zero to the resulting number.
- * The resulting number is taken into account.
- *
- * @param {number} number
- * @return {number}
- *
- * @example:
- * 4  => 2
- * 5  => 3
- * 10 => 5
- * 15 => 8
- */
-function getCountOfOddNumbers(/* number */) {
-  throw new Error('Not implemented');
+function getCountOfOddNumbers(number) {
+  if (number % 2 === 0) {
+    return Math.abs(number / 2);
+  }
+  return (Math.abs(number) + 1) / 2;
 }
 
 module.exports = {
